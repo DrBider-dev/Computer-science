@@ -84,5 +84,6 @@ Each notebook includes:
 computer-science/
 │
 ├── notebooks/
+├── practice/
 ├── workshops/
 └── README.md
