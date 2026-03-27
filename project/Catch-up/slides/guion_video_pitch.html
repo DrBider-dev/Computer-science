@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guión del Video — Plague Containment</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1419;
+    --card: #1A2029;
+    --border: #2A3442;
+    --red: #E74C3C;
+    --green: #2ECC71;
+    --blue: #3498DB;
+    --purple: #9B59B6;
+    --yellow: #F1C40F;
+    --orange: #E67E22;
+    --text: #E8EAED;
+    --muted: #9AA0A6;
+    --dim: #5F6368;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .header h1 span { color: var(--red); }
+  .header p { color: var(--muted); margin-top: 8px; font-size: 14px; }
+  .header .badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 5px 18px;
+    background: rgba(231,76,60,0.15);
+    border: 1px solid rgba(231,76,60,0.3);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Important box */
+  .important-box {
+    background: rgba(241,196,15,0.08);
+    border-left: 4px solid var(--yellow);
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 40px;
+  }
+  .important-box h3 {
+    color: var(--yellow);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .important-box p { color: var(--muted); font-size: 14px; }
+  .important-box strong { color: var(--text); }
+
+  /* Section */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 20px 26px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-header .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .section-header .meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .section-body { padding: 0 26px 24px 26px; }
+
+  /* Person colors */
+  .nelson .section-header { border-bottom: 1px solid rgba(155,89,182,0.2); }
+  .nelson .icon { background: rgba(155,89,182,0.15); color: var(--purple); }
+  .nelson h2 { color: var(--purple); }
+
+  .brayan .section-header { border-bottom: 1px solid rgba(52,152,219,0.2); }
+  .brayan .icon { background: rgba(52,152,219,0.15); color: var(--blue); }
+  .brayan h2 { color: var(--blue); }
+
+  .juan .section-header { border-bottom: 1px solid rgba(46,204,113,0.2); }
+  .juan .icon { background: rgba(46,204,113,0.15); color: var(--green); }
+  .juan h2 { color: var(--green); }
+
+  .todos .section-header { border-bottom: 1px solid rgba(241,196,15,0.2); }
+  .todos .icon { background: rgba(241,196,15,0.15); color: var(--yellow); }
+  .todos h2 { color: var(--yellow); }
+
+  /* Speech bubble */
+  .speech {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--dim);
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .speech em { color: var(--muted); font-style: normal; }
+  .speech strong { color: var(--yellow); font-weight: 600; }
+  .speech .action {
+    color: var(--orange);
+    font-style: italic;
+    font-size: 13px;
+    display: block;
+    margin: 8px 0;
+  }
+
+  /* Tips box */
+  .tips {
+    background: rgba(46,204,113,0.06);
+    border: 1px solid rgba(46,204,113,0.15);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .tips h4 {
+    color: var(--green);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .tips ul {
+    list-style: none;
+    padding: 0;
+  }
+  .tips li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .tips li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* Slide reference */
+  .slide-ref {
+    display: inline-block;
+    padding: 3px 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-left: 6px;
+  }
+
+  /* Time tag */
+  .time {
+    display: inline-block;
+    padding: 2px 10px;
+    background: rgba(231,76,60,0.12);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red);
+    margin-left: 8px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 12px 0 18px 0;
+  }
+
+  /* Final tips */
+  .final-tips {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-top: 10px;
+  }
+  .final-tips h2 {
+    color: var(--orange);
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .final-tips ol {
+    padding-left: 20px;
+  }
+  .final-tips li {
+    padding: 6px 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .final-tips li strong { color: var(--text); }
+
+  .highlight { color: var(--yellow); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1><span>PLAGUE</span> CONTAINMENT</h1>
+    <p>Guión del Video — Equipo 16</p>
+    <div class="badge">Enfoque: Vender la idea del juego</div>
+  </div>
+
+  <!-- IMPORTANT -->
+  <div class="important-box">
+    <h3>⚠️ Lo que dijo el profesor</h3>
+    <p><strong>"El video deben venderme la definición que van a hacer del juego y venderme la solución que están proponiendo. No es de mostrar código, es de diseño y de imaginarse el producto final."</strong></p>
+    <p style="margin-top:10px">Esto significa: hablen con confianza, señalen las slides, expliquen conceptos, NO lean pseudocódigo ni muestren código.</p>
+  </div>
+
+  <!-- ════════ INTRO ════════ -->
+  <div class="section todos">
+    <div class="section-header">
+      <div class="icon">👥</div>
+      <div>
+        <h2>Intro Conjunta <span class="time">~30 seg</span></h2>
+        <div class="meta">Cualquiera del equipo · Slide 1 (portada)</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="speech">
+        "Hola, somos el Equipo 16: Nelson, Brayan y Juan Sneyder. Nuestro proyecto es <strong>Plague Containment</strong>, un juego de estrategia por turnos donde el jugador debe detener una epidemia que se propaga por una ciudad de 64 distritos. Hoy les vamos a mostrar qué juego vamos a construir y por qué nuestra solución funciona."
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ NELSON ════════ -->
+  <div class="section nelson">
+    <div class="section-header">
+      <div class="icon">⚙️</div>
+      <div>
+        <h2>Nelson David — El Motor del Juego <span class="time">~2 min</span></h2>
+        <div class="meta">Estructuras de datos (C++) · Slide 6</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="speech">
+        "Yo soy Nelson y diseñé el motor del juego en C++.
+        <br><br>
+        Imaginen la ciudad como un tablero de 8×8. Cada distrito tiene un nivel de riesgo del 1 al 10. Mientras más alto el riesgo, más probable que la plaga llegue. Cada turno, la plaga se propaga a los distritos vecinos sanos.
+        <br><br>
+        Para manejar esto usamos dos estructuras de datos:
+        <br><br>
+        <span class="action">[Señalar el diagrama de la lista enlazada en la slide]</span>
+        <strong>La lista enlazada</strong> almacena la cadena de infección — el historial cronológico de cómo la plaga fue avanzando distrito por distrito. La usamos porque la infección crece dinámicamente: no sabemos cuántos distritos se van a infectar, y necesitamos agregar nuevos nodos eficientemente.
+        <br><br>
+        <span class="action">[Señalar el diagrama del árbol AVL]</span>
+        <strong>El árbol AVL</strong> almacena todos los distritos ordenados por nivel de riesgo. Esto permite que los algoritmos de Brayan encuentren rápidamente el distrito más peligroso en tiempo logarítmico — O(log n). ¿Por qué AVL y no un BST normal? Porque el AVL se auto-balancea. Un BST podría degradarse a una lista si los datos llegan ordenados, pero el AVL siempre mantiene su eficiencia.
+        <br><br>
+        Estas dos estructuras son el corazón del motor que mantiene el estado del juego actualizado cada turno."
+      </div>
+
+      <div class="tips">
+        <h4>💡 Tips para Nelson</h4>
+        <ul>
+          <li>Señala los nodos de la lista enlazada: (3,4)→(3,5)→(2,4)→(4,4)</li>
+          <li>Explica brevemente el árbol: "la raíz es 5, a la izquierda los menores, a la derecha los mayores"</li>
+          <li>NO te metas en detalles de rotaciones del AVL, solo di que se auto-balancea</li>
+          <li>Usa un ejemplo concreto: "si el distrito (2,4) se infecta en el turno 2, lo agregamos al final de la lista"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ BRAYAN ════════ -->
+  <div class="section brayan">
+    <div class="section-header">
+      <div class="icon">🧠</div>
+      <div>
+        <h2>Brayan Estiven — Los Algoritmos <span class="time">~2 min</span></h2>
+        <div class="meta">Greedy + Backtracking (Python) · Slide 4</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="speech">
+        "Yo soy Brayan y diseñé los dos algoritmos que asisten al jugador.
+        <br><br>
+        <span class="action">[Señalar la tarjeta izquierda: Greedy Vaccination]</span>
+        <strong>El primero es el algoritmo Greedy — el asesor de vacunación.</strong> Funciona así: mira todos los distritos sanos que están al lado de uno infectado, y recomienda vacunar el que tiene el riesgo más alto. Es como un bombero que siempre apaga el fuego más grande primero. Se llama 'greedy' porque siempre toma la mejor decisión inmediata sin pensar a largo plazo. Y funciona bien aquí porque el distrito más peligroso ahora ES el más urgente de proteger.
+        <br><br>
+        <span class="action">[Señalar la tarjeta derecha: Backtracking Quarantine]</span>
+        <strong>El segundo es el algoritmo Backtracking — el planificador de cuarentena.</strong> Este es más complejo. Necesita encontrar un grupo de distritos para poner en cuarentena que encierre COMPLETAMENTE la zona infectada, pero sin dejar ningún distrito sano aislado del resto de la ciudad.
+        <br><br>
+        ¿Por qué backtracking y no otro greedy? Porque aquí una decisión localmente buena puede ser globalmente mala. Si ponemos en cuarentena el distrito equivocado, podríamos aislar toda una zona sana. Es como armar un rompecabezas: si una pieza no encaja, la quitas y pruebas otra. Eso es backtracking — probar, verificar, y si falla, devolverse.
+        <br><br>
+        Juntos, estos dos algoritmos le dan al jugador una herramienta rápida para el día a día y una herramienta estratégica para el plan maestro."
+      </div>
+
+      <div class="tips">
+        <h4>💡 Tips para Brayan</h4>
+        <ul>
+          <li>Usa las analogías: bombero (greedy) y rompecabezas (backtracking)</li>
+          <li>NO leas pseudocódigo, habla del concepto y la lógica</li>
+          <li>Enfatiza la diferencia: greedy = rápido y local, backtracking = exhaustivo y global</li>
+          <li>Menciona qué pasa si no hay solución: "el backtracking reporta que no es posible y el jugador solo puede vacunar"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ JUAN SNEYDER ════════ -->
+  <div class="section juan">
+    <div class="section-header">
+      <div class="icon">🎮</div>
+      <div>
+        <h2>Juan Sneyder — Interfaz y Arquitectura <span class="time">~2.5 min</span></h2>
+        <div class="meta">Pygame + JSON Bridge · Slides 3 y 5</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <p style="font-size:13px;color:var(--orange);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Parte 1 — El juego que vamos a construir <span class="slide-ref">Slide 3</span></p>
+
+      <div class="speech">
+        "Yo soy Juan Sneyder y me encargué de diseñar cómo se ve el juego y cómo se comunican todos los componentes del sistema.
+        <br><br>
+        <span class="action">[Señalar el grid en la slide 3]</span>
+        Así va a verse nuestro juego. A la izquierda tenemos el tablero de 8×8 donde cada casilla representa un distrito de la ciudad. El número dentro de cada casilla es su nivel de riesgo. Los colores son intuitivos: <em>blanco</em> es sano, <em>rojo</em> es infectado, <em>verde</em> es vacunado, <em>morado</em> es en cuarentena. Y la casilla <em>amarilla</em> es la sugerencia del algoritmo Greedy: el distrito que más urge proteger.
+        <br><br>
+        <span class="action">[Señalar el panel derecho]</span>
+        A la derecha tenemos el panel de información con todo lo que el jugador necesita: el turno actual, cuántos distritos hay de cada tipo, la recomendación del Greedy con su nivel de riesgo, el resultado del plan de cuarentena, y tres botones de acción: vacunar, aplicar cuarentena, o pasar turno.
+        <br><br>
+        La experiencia es simple: haces clic en un distrito, ves su información, y decides qué hacer. Pero las decisiones son estratégicas."
+      </div>
+
+      <div class="divider"></div>
+
+      <p style="font-size:13px;color:var(--orange);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Parte 2 — La arquitectura <span class="slide-ref">Slide 5</span></p>
+
+      <div class="speech">
+        <span class="action">[Cambiar a slide 5]</span>
+        "Ahora, ¿cómo hacemos que todo funcione junto si tenemos C++ por un lado y Python por otro?
+        <br><br>
+        <span class="action">[Señalar los 3 componentes arriba]</span>
+        La respuesta es <strong>JSON</strong>. Diseñé tres archivos JSON que funcionan como un puente de comunicación entre las tres capas del sistema.
+        <br><br>
+        <span class="action">[Señalar state.json]</span>
+        <strong>Primero</strong>: el motor en C++ actualiza el estado del juego — propaga la plaga, actualiza la lista enlazada y el árbol AVL — y escribe todo en <em>state.json</em>. Este archivo tiene los 64 distritos con su riesgo y estado, la cadena de infección, y contadores generales.
+        <br><br>
+        <span class="action">[Señalar result.json]</span>
+        <strong>Segundo</strong>: Python lee ese estado, ejecuta el Greedy y el Backtracking, y escribe las recomendaciones en <em>result.json</em>. Ahí va cuál distrito vacunar y cuáles poner en cuarentena.
+        <br><br>
+        <span class="action">[Señalar action.json]</span>
+        <strong>Tercero</strong>: la interfaz en Pygame lee ambos archivos, dibuja todo en pantalla, y cuando el jugador actúa, escribe la decisión en <em>action.json</em>. C++ lo lee, aplica la acción, y el ciclo se repite.
+        <br><br>
+        Es como una conversación por notas entre tres personas que hablan idiomas diferentes. Cada uno escribe lo suyo y los demás lo leen.
+        <br><br>
+        ¿Por qué JSON y no bindings directos entre C++ y Python? Tres razones: es legible — podemos abrir el archivo y ver exactamente qué datos hay. Es fácil de depurar. Y nos permite trabajar de forma independiente: Nelson puede probar su C++ con un JSON de prueba, Brayan puede probar sus algoritmos con otro, y yo puedo diseñar la interfaz sin tocar C++."
+      </div>
+
+      <div class="tips">
+        <h4>💡 Tips para Juan Sneyder</h4>
+        <ul>
+          <li>SEÑALA los diagramas mientras hablas — el profesor quiere ver que entiendes tu diseño</li>
+          <li>Usa la analogía de "conversación por notas" — es muy clara</li>
+          <li>Enfatiza que JSON facilita el trabajo en equipo (punto fuerte)</li>
+          <li>Muestra entusiasmo: estás vendiendo TU diseño como el pegamento del proyecto</li>
+          <li>Si te preguntan "¿por qué no una base de datos?", di: "para 64 distritos es innecesario, JSON es más simple y suficiente"</li>
+          <li>Si te preguntan "¿y si dos componentes escriben al mismo tiempo?", di: "el flujo es secuencial, no hay acceso simultáneo"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CIERRE ════════ -->
+  <div class="section todos">
+    <div class="section-header">
+      <div class="icon">🎬</div>
+      <div>
+        <h2>Cierre Conjunto <span class="time">~30 seg</span></h2>
+        <div class="meta">Cualquiera del equipo · Slide 7</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="speech">
+        "En resumen: <strong>Plague Containment</strong> es un juego de estrategia donde combinamos un algoritmo greedy para decisiones rápidas, un backtracking para planificación global, estructuras de datos eficientes en C++, y una interfaz clara en Pygame — todo conectado por un puente JSON que permite que los tres componentes trabajen juntos sin acoplamiento directo.
+        <br><br>
+        Los próximos pasos son implementar todo el código y tener el juego funcionando para la semana 16. Gracias."
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ TIPS FINALES ════════ -->
+  <div class="final-tips">
+    <h2>📋 Tips Generales para el Video</h2>
+    <ol>
+      <li><strong>NO lean un guión</strong> — usen las slides como guía y hablen naturalmente. El guión de arriba es para practicar, no para leer textualmente.</li>
+      <li><strong>Señalen las slides</strong> — el profesor quiere ver que entienden lo que hicieron, no que memorizaron un texto.</li>
+      <li><strong>No muestren código</strong> — el profesor dijo explícitamente que no quiere código. Solo diseño y visión.</li>
+      <li><strong>Véndanlo</strong> — hablen con confianza. Imaginen que están en un pitch de startup vendiendo su producto.</li>
+      <li><strong>Duración ideal: 5-7 minutos</strong> — suficiente para cubrir todo sin aburrir.</li>
+      <li><strong>Graben con las slides de fondo</strong> — compartan pantalla en Zoom/Meet/Teams y hablen encima.</li>
+      <li><strong>Practiquen una vez</strong> antes de grabar. La segunda toma siempre sale mejor.</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

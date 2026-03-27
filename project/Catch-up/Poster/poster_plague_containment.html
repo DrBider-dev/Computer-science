@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plague Containment — Academic Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1419;
+    --card: #1A2029;
+    --card-border: #2A3442;
+    --accent-red: #E74C3C;
+    --accent-green: #2ECC71;
+    --accent-blue: #3498DB;
+    --accent-purple: #9B59B6;
+    --accent-yellow: #F1C40F;
+    --accent-orange: #E67E22;
+    --text: #E8EAED;
+    --text-muted: #9AA0A6;
+    --text-dim: #5F6368;
+    --heading: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .poster {
+    width: 1190px;
+    min-height: 1684px;
+    margin: 0 auto;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 36px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(231,76,60,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(155,89,182,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    color: var(--heading);
+    letter-spacing: 2px;
+    position: relative;
+  }
+  .header h1 .red { color: var(--accent-red); }
+  .header .subtitle {
+    font-size: 17px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  .header .authors {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--accent-blue);
+    font-weight: 600;
+  }
+  .header .affiliation {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .header .course-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 16px;
+    background: rgba(52,152,219,0.15);
+    border: 1px solid rgba(52,152,219,0.3);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-blue);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── GRID LAYOUT ── */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+  }
+  .card.red::before { background: var(--accent-red); }
+  .card.blue::before { background: var(--accent-blue); }
+  .card.green::before { background: var(--accent-green); }
+  .card.purple::before { background: var(--accent-purple); }
+  .card.yellow::before { background: var(--accent-yellow); }
+  .card.orange::before { background: var(--accent-orange); }
+
+  .card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--heading);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .card.red h2 .num { background: rgba(231,76,60,0.2); color: var(--accent-red); }
+  .card.blue h2 .num { background: rgba(52,152,219,0.2); color: var(--accent-blue); }
+  .card.green h2 .num { background: rgba(46,204,113,0.2); color: var(--accent-green); }
+  .card.purple h2 .num { background: rgba(155,89,182,0.2); color: var(--accent-purple); }
+  .card.yellow h2 .num { background: rgba(241,196,15,0.2); color: var(--accent-yellow); }
+  .card.orange h2 .num { background: rgba(230,126,34,0.2); color: var(--accent-orange); }
+
+  .card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 14px 0 6px 0;
+  }
+
+  .card p, .card li {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .card ul li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+
+  .card strong { color: var(--text); font-weight: 600; }
+
+  /* ── GRID VISUAL ── */
+  .grid-visual {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    margin: 12px 0;
+  }
+  .grid-cell {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.6);
+  }
+  .gc-healthy { background: rgba(255,255,255,0.12); color: var(--text-dim); }
+  .gc-infected { background: rgba(231,76,60,0.5); color: #fff; }
+  .gc-vaccinated { background: rgba(46,204,113,0.45); color: #fff; }
+  .gc-quarantined { background: rgba(155,89,182,0.45); color: #fff; }
+  .gc-suggestion { background: rgba(241,196,15,0.5); color: #000; border: 2px solid var(--accent-yellow); }
+
+  .legend {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: #0D1117;
+    border: 1px solid #21262D;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 10px 0;
+    color: #C9D1D9;
+  }
+  .code-block .key { color: #FF7B72; }
+  .code-block .str { color: #A5D6FF; }
+  .code-block .num { color: #79C0FF; }
+  .code-block .bool { color: #FF7B72; }
+  .code-block .comment { color: #484F58; font-style: italic; }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 80px;
+  }
+  .flow-arrow {
+    color: var(--text-dim);
+    font-size: 16px;
+  }
+  .fb-cpp { background: rgba(231,76,60,0.2); color: var(--accent-red); border: 1px solid rgba(231,76,60,0.3); }
+  .fb-json { background: rgba(241,196,15,0.15); color: var(--accent-yellow); border: 1px solid rgba(241,196,15,0.3); }
+  .fb-py { background: rgba(52,152,219,0.2); color: var(--accent-blue); border: 1px solid rgba(52,152,219,0.3); }
+  .fb-ui { background: rgba(46,204,113,0.2); color: var(--accent-green); border: 1px solid rgba(46,204,113,0.3); }
+
+  /* ── ARCHITECTURE DIAGRAM ── */
+  .arch-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px 0;
+    gap: 8px;
+  }
+  .arch-component {
+    flex: 1;
+    padding: 14px 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .arch-component .icon { font-size: 24px; margin-bottom: 6px; }
+  .arch-component .label { font-size: 12px; font-weight: 700; }
+  .arch-component .sub { font-size: 10px; margin-top: 3px; opacity: 0.7; }
+  .ac-cpp { background: rgba(231,76,60,0.15); color: var(--accent-red); border: 1px solid rgba(231,76,60,0.25); }
+  .ac-py { background: rgba(52,152,219,0.15); color: var(--accent-blue); border: 1px solid rgba(52,152,219,0.25); }
+  .ac-ui { background: rgba(46,204,113,0.15); color: var(--accent-green); border: 1px solid rgba(46,204,113,0.25); }
+  .arch-arrow {
+    font-size: 11px;
+    color: var(--accent-yellow);
+    text-align: center;
+    flex-shrink: 0;
+    line-height: 1.3;
+  }
+  .arch-arrow .file { font-family: 'JetBrains Mono', monospace; font-size: 9px; display: block; }
+
+  /* ── STATE TABLE ── */
+  .state-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 11.5px;
+  }
+  .state-table th {
+    background: rgba(255,255,255,0.05);
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .state-table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-muted);
+  }
+  .state-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── ALGO CARDS ── */
+  .algo-step {
+    display: flex;
+    gap: 8px;
+    margin: 6px 0;
+    align-items: flex-start;
+  }
+  .algo-step .step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .algo-step .step-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* ── WIDE CARD ── */
+  .wide-card {
+    grid-column: 1 / -1;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .footer .ref {
+    font-size: 10.5px;
+    max-width: 70%;
+  }
+
+  /* ── SPAN 2 ── */
+  .span2 { grid-column: span 2; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 2px 2px;
+  }
+  .tag-cpp { background: rgba(231,76,60,0.2); color: var(--accent-red); }
+  .tag-py { background: rgba(52,152,219,0.2); color: var(--accent-blue); }
+  .tag-ui { background: rgba(46,204,113,0.2); color: var(--accent-green); }
+  .tag-json { background: rgba(241,196,15,0.15); color: var(--accent-yellow); }
+
+  .highlight-box {
+    background: rgba(52,152,219,0.08);
+    border-left: 3px solid var(--accent-blue);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .wireframe-layout {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .wf-grid-area {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .wf-panel {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 10px;
+  }
+  .wf-panel .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 8px 0 4px 0;
+    color: var(--text-dim);
+  }
+  .wf-panel .section-label:first-child { margin-top: 0; }
+  .wf-btn {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 700;
+    margin: 4px 0;
+    border: none;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="header">
+    <h1><span class="red">Plague</span> Containment</h1>
+    <div class="subtitle">A Grid-Based Epidemic Strategy Game with Greedy &amp; Backtracking Algorithms</div>
+    <div class="authors">Nelson David Molina Ramos &nbsp;·&nbsp; Brayan Estiven Aguirre Aristizabal &nbsp;·&nbsp; Juan Sneyder Méndez Gil</div>
+    <div class="affiliation">Computer Engineering Program — Universidad Distrital Francisco José de Caldas — Bogotá, Colombia</div>
+    <div class="course-tag">Computer Sciences I · Semester 2026-I · Team 16</div>
+  </div>
+
+  <!-- ══════════ ROW 1: 3 columns ══════════ -->
+  <div class="columns">
+
+    <!-- 1. PROBLEM -->
+    <div class="card red">
+      <h2><span class="num">1</span>Problem &amp; Motivation</h2>
+      <p>Epidemic containment requires <strong>rapid local decisions</strong> (which area to protect next) combined with <strong>global planning</strong> (how to isolate the infected zone without fragmenting healthy regions).</p>
+      <p style="margin-top:10px">Plague Containment models this as a turn-based strategy game on an <strong>8×8 city grid</strong>, where each district carries a risk level (1–10) and the plague spreads every turn.</p>
+
+      <h3>District States</h3>
+      <table class="state-table">
+        <tr><th>State</th><th>Meaning</th></tr>
+        <tr><td><span class="state-dot" style="background:#fff"></span>Healthy</td><td>Not yet affected</td></tr>
+        <tr><td><span class="state-dot" style="background:var(--accent-red)"></span>Infected</td><td>Has plague, spreads to neighbors</td></tr>
+        <tr><td><span class="state-dot" style="background:var(--accent-green)"></span>Vaccinated</td><td>Immune, blocks spread</td></tr>
+        <tr><td><span class="state-dot" style="background:var(--accent-purple)"></span>Quarantined</td><td>Locked down for containment</td></tr>
+      </table>
+
+      <h3>Game Grid Example</h3>
+      <div class="grid-visual">
+        <div class="gc-healthy">3</div><div class="gc-healthy">5</div><div class="gc-healthy">2</div><div class="gc-healthy">7</div><div class="gc-healthy">4</div><div class="gc-healthy">6</div><div class="gc-healthy">1</div><div class="gc-healthy">3</div>
+        <div class="gc-healthy">4</div><div class="gc-healthy">6</div><div class="gc-healthy">8</div><div class="gc-vaccinated">5</div><div class="gc-healthy">3</div><div class="gc-healthy">7</div><div class="gc-healthy">2</div><div class="gc-healthy">5</div>
+        <div class="gc-healthy">2</div><div class="gc-healthy">4</div><div class="gc-vaccinated">6</div><div class="gc-infected">8</div><div class="gc-infected">9</div><div class="gc-suggestion">7</div><div class="gc-healthy">3</div><div class="gc-healthy">4</div>
+        <div class="gc-healthy">5</div><div class="gc-healthy">3</div><div class="gc-quarantined">4</div><div class="gc-infected">7</div><div class="gc-infected">6</div><div class="gc-quarantined">5</div><div class="gc-healthy">8</div><div class="gc-healthy">2</div>
+        <div class="gc-healthy">7</div><div class="gc-healthy">1</div><div class="gc-healthy">9</div><div class="gc-healthy">2</div><div class="gc-healthy">5</div><div class="gc-healthy">3</div><div class="gc-healthy">6</div><div class="gc-healthy">4</div>
+        <div class="gc-healthy">3</div><div class="gc-healthy">8</div><div class="gc-healthy">4</div><div class="gc-healthy">6</div><div class="gc-healthy">1</div><div class="gc-healthy">7</div><div class="gc-healthy">2</div><div class="gc-healthy">9</div>
+        <div class="gc-healthy">6</div><div class="gc-healthy">2</div><div class="gc-healthy">5</div><div class="gc-healthy">3</div><div class="gc-healthy">8</div><div class="gc-healthy">4</div><div class="gc-healthy">1</div><div class="gc-healthy">7</div>
+        <div class="gc-healthy">1</div><div class="gc-healthy">9</div><div class="gc-healthy">3</div><div class="gc-healthy">5</div><div class="gc-healthy">2</div><div class="gc-healthy">8</div><div class="gc-healthy">4</div><div class="gc-healthy">6</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.12)"></div>Healthy</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(231,76,60,0.5)"></div>Infected</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(46,204,113,0.45)"></div>Vaccinated</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(155,89,182,0.45)"></div>Quarantined</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(241,196,15,0.5);border:2px solid var(--accent-yellow)"></div>Suggestion</div>
+      </div>
+    </div>
+
+    <!-- 2. ALGORITHMS -->
+    <div class="card blue">
+      <h2><span class="num">2</span>Algorithm Design</h2>
+
+      <h3>Greedy Vaccination</h3>
+      <p>Recommends the <strong>highest-risk healthy neighbor</strong> of the infected zone for immediate vaccination.</p>
+      <div style="margin:10px 0">
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">1</div>
+          <div class="step-text">Scan all infected districts and collect their healthy neighbors (no duplicates)</div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">2</div>
+          <div class="step-text">Select the candidate with the highest risk level</div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">3</div>
+          <div class="step-text">Mark it as vaccinated and return the recommendation</div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <strong>Why greedy?</strong> The most urgent threat is always the highest-risk unprotected neighbor. Local optimality aligns with the immediate game objective.
+      </div>
+
+      <h3>Backtracking Quarantine</h3>
+      <p>Finds a set of districts to quarantine that <strong>fully encloses</strong> the infected zone <strong>without isolating</strong> any healthy area.</p>
+      <div style="margin:10px 0">
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">1</div>
+          <div class="step-text">Identify all healthy border districts adjacent to infected cells</div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">2</div>
+          <div class="step-text">For each candidate: try quarantining it, then check connectivity</div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">3</div>
+          <div class="step-text">If connectivity breaks → <strong>backtrack</strong> (undo) and try next option</div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num" style="background:rgba(52,152,219,0.2);color:var(--accent-blue)">4</div>
+          <div class="step-text">If full enclosure achieved with connectivity → return solution</div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <strong>Why backtracking?</strong> A greedy approach could accidentally isolate a healthy region. Backtracking explores all valid combinations and undoes bad choices.
+      </div>
+    </div>
+
+    <!-- 3. DATA STRUCTURES -->
+    <div class="card purple">
+      <h2><span class="num">3</span>Data Structures (C++)</h2>
+
+      <h3>Linked List — Infection Chain</h3>
+      <p>Stores the <strong>chronological history</strong> of plague spread. Each node contains the district position and the turn it was infected.</p>
+      <div style="margin:12px 0;display:flex;align-items:center;justify-content:center;gap:4px">
+        <div style="background:rgba(231,76,60,0.3);padding:6px 10px;border-radius:6px;font-size:10px;text-align:center;border:1px solid rgba(231,76,60,0.4)">
+          <div style="font-weight:700;color:var(--accent-red)">(3,4)</div>
+          <div style="color:var(--text-dim)">t=1</div>
+        </div>
+        <span style="color:var(--text-dim)">→</span>
+        <div style="background:rgba(231,76,60,0.3);padding:6px 10px;border-radius:6px;font-size:10px;text-align:center;border:1px solid rgba(231,76,60,0.4)">
+          <div style="font-weight:700;color:var(--accent-red)">(3,5)</div>
+          <div style="color:var(--text-dim)">t=1</div>
+        </div>
+        <span style="color:var(--text-dim)">→</span>
+        <div style="background:rgba(231,76,60,0.3);padding:6px 10px;border-radius:6px;font-size:10px;text-align:center;border:1px solid rgba(231,76,60,0.4)">
+          <div style="font-weight:700;color:var(--accent-red)">(2,4)</div>
+          <div style="color:var(--text-dim)">t=2</div>
+        </div>
+        <span style="color:var(--text-dim)">→</span>
+        <div style="background:rgba(231,76,60,0.3);padding:6px 10px;border-radius:6px;font-size:10px;text-align:center;border:1px solid rgba(231,76,60,0.4)">
+          <div style="font-weight:700;color:var(--accent-red)">(4,4)</div>
+          <div style="color:var(--text-dim)">t=3</div>
+        </div>
+        <span style="color:var(--text-dim)">→</span>
+        <span style="color:var(--text-dim);font-size:10px">NULL</span>
+      </div>
+      <p><strong>Why linked list?</strong> Infection grows dynamically — we don't know how many districts will be infected. Insertions at the tail are O(1).</p>
+
+      <h3 style="margin-top:18px">AVL Tree — District Risk Index</h3>
+      <p>Stores districts <strong>ordered by risk level</strong>. Self-balancing guarantees O(log n) lookups for the highest-risk district.</p>
+      <div style="margin:12px 0;text-align:center">
+        <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px">
+          <div style="background:rgba(155,89,182,0.3);padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.4)">Risk: 5</div>
+          <div style="display:flex;gap:40px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="color:var(--text-dim);font-size:10px">╱</div>
+              <div style="background:rgba(155,89,182,0.2);padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.3)">Risk: 3</div>
+              <div style="display:flex;gap:16px">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <div style="color:var(--text-dim);font-size:9px">╱</div>
+                  <div style="background:rgba(155,89,182,0.12);padding:3px 8px;border-radius:5px;font-size:9px;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.2)">1</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <div style="color:var(--text-dim);font-size:9px">╲</div>
+                  <div style="background:rgba(155,89,182,0.12);padding:3px 8px;border-radius:5px;font-size:9px;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.2)">4</div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="color:var(--text-dim);font-size:10px">╲</div>
+              <div style="background:rgba(155,89,182,0.2);padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.3)">Risk: 8</div>
+              <div style="display:flex;gap:16px">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <div style="color:var(--text-dim);font-size:9px">╱</div>
+                  <div style="background:rgba(155,89,182,0.12);padding:3px 8px;border-radius:5px;font-size:9px;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.2)">7</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <div style="color:var(--text-dim);font-size:9px">╲</div>
+                  <div style="background:rgba(155,89,182,0.12);padding:3px 8px;border-radius:5px;font-size:9px;color:var(--accent-purple);border:1px solid rgba(155,89,182,0.2)">9</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Why AVL over BST?</strong> A standard BST can degrade to O(n) if risk values are inserted in order. AVL's rotations keep it balanced at O(log n).</p>
+    </div>
+
+    <!-- 4. ARCHITECTURE (wide) -->
+    <div class="card yellow span2">
+      <h2><span class="num">4</span>System Architecture &amp; JSON Bridge</h2>
+      <p>Three layers communicate through <strong>JSON files</strong> — no direct bindings between C++ and Python. Each component reads and writes specific files in a sequential cycle.</p>
+
+      <div class="arch-diagram">
+        <div class="arch-component ac-cpp">
+          <div class="icon">⚙️</div>
+          <div class="label">C++ Engine</div>
+          <div class="sub">Linked List + AVL Tree</div>
+          <div class="sub">Plague spread logic</div>
+        </div>
+        <div class="arch-arrow">
+          writes →<br><span class="file">state.json</span>
+        </div>
+        <div class="arch-component ac-py">
+          <div class="icon">🧠</div>
+          <div class="label">Python Algorithms</div>
+          <div class="sub">Greedy + Backtracking</div>
+          <div class="sub">Reads state, writes results</div>
+        </div>
+        <div class="arch-arrow">
+          writes →<br><span class="file">result.json</span>
+        </div>
+        <div class="arch-component ac-ui">
+          <div class="icon">🎮</div>
+          <div class="label">Pygame Interface</div>
+          <div class="sub">Grid render + HUD</div>
+          <div class="sub">Player input capture</div>
+        </div>
+        <div class="arch-arrow">
+          writes →<br><span class="file">action.json</span>
+        </div>
+        <div style="color:var(--accent-red);font-size:11px;text-align:center">
+          ↩ back to<br>C++ Engine
+        </div>
+      </div>
+
+      <h3>Turn Cycle</h3>
+      <div class="flow-diagram">
+        <div class="flow-box fb-cpp">C++ updates<br>plague spread</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-json">state.json</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-py">Python runs<br>algorithms</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-json">result.json</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-ui">Pygame renders<br>grid + HUD</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-ui">Player<br>acts</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-json">action.json</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box fb-cpp">C++ applies<br>action</div>
+        <div class="flow-arrow">↩</div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Why JSON instead of direct bindings?</strong> Human-readable, debuggable, decouples components, and both languages support it natively (<code>nlohmann/json</code> in C++, <code>json</code> module in Python).
+      </div>
+    </div>
+
+    <!-- 5. JSON SCHEMA -->
+    <div class="card orange">
+      <h2><span class="num">5</span>JSON Schema</h2>
+
+      <h3>state.json <span class="tag tag-cpp">C++ writes</span></h3>
+      <div class="code-block"><span class="comment">// Full game snapshot</span>
+{
+  <span class="key">"turn"</span>: <span class="num">3</span>,
+  <span class="key">"grid_size"</span>: <span class="num">8</span>,
+  <span class="key">"districts"</span>: [
+    {<span class="key">"row"</span>:<span class="num">0</span>, <span class="key">"col"</span>:<span class="num">1</span>,
+     <span class="key">"risk"</span>:<span class="num">8</span>,
+     <span class="key">"state"</span>:<span class="str">"infected"</span>}
+  ],
+  <span class="key">"infection_chain"</span>: [
+    {<span class="key">"row"</span>:<span class="num">3</span>,<span class="key">"col"</span>:<span class="num">4</span>,
+     <span class="key">"turn_infected"</span>:<span class="num">1</span>}
+  ],
+  <span class="key">"stats"</span>: {
+    <span class="key">"total_infected"</span>: <span class="num">4</span>,
+    <span class="key">"total_healthy"</span>: <span class="num">52</span>
+  }
+}</div>
+
+      <h3>result.json <span class="tag tag-py">Python writes</span></h3>
+      <div class="code-block">{
+  <span class="key">"greedy_recommendation"</span>: {
+    <span class="key">"row"</span>:<span class="num">2</span>, <span class="key">"col"</span>:<span class="num">5</span>,
+    <span class="key">"risk"</span>:<span class="num">9</span>
+  },
+  <span class="key">"quarantine_plan"</span>: {
+    <span class="key">"found"</span>: <span class="bool">true</span>,
+    <span class="key">"districts"</span>: [
+      {<span class="key">"row"</span>:<span class="num">2</span>,<span class="key">"col"</span>:<span class="num">3</span>},
+      {<span class="key">"row"</span>:<span class="num">4</span>,<span class="key">"col"</span>:<span class="num">5</span>}
+    ],
+    <span class="key">"cost"</span>: <span class="num">4</span>
+  }
+}</div>
+
+      <h3>action.json <span class="tag tag-ui">Pygame writes</span></h3>
+      <div class="code-block">{
+  <span class="key">"turn"</span>: <span class="num">3</span>,
+  <span class="key">"action_type"</span>: <span class="str">"vaccinate"</span>,
+  <span class="key">"target"</span>: {
+    <span class="key">"row"</span>:<span class="num">2</span>,
+    <span class="key">"col"</span>:<span class="num">5</span>}
+}</div>
+    </div>
+
+    <!-- 6. INTERFACE (wide) -->
+    <div class="card green wide-card">
+      <h2><span class="num">6</span>Pygame Interface Wireframe</h2>
+
+      <div class="wireframe-layout">
+        <div class="wf-grid-area">
+          <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text-dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Game Grid (8×8)</div>
+          <div class="grid-visual">
+            <div class="gc-healthy">3</div><div class="gc-healthy">5</div><div class="gc-healthy">2</div><div class="gc-healthy">7</div><div class="gc-healthy">4</div><div class="gc-healthy">6</div><div class="gc-healthy">1</div><div class="gc-healthy">3</div>
+            <div class="gc-healthy">4</div><div class="gc-healthy">6</div><div class="gc-healthy">8</div><div class="gc-vaccinated">5</div><div class="gc-healthy">3</div><div class="gc-healthy">7</div><div class="gc-healthy">2</div><div class="gc-healthy">5</div>
+            <div class="gc-healthy">2</div><div class="gc-healthy">4</div><div class="gc-vaccinated">6</div><div class="gc-infected">8</div><div class="gc-infected">9</div><div class="gc-suggestion">7</div><div class="gc-healthy">3</div><div class="gc-healthy">4</div>
+            <div class="gc-healthy">5</div><div class="gc-healthy">3</div><div class="gc-quarantined">4</div><div class="gc-infected">7</div><div class="gc-infected">6</div><div class="gc-quarantined">5</div><div class="gc-healthy">8</div><div class="gc-healthy">2</div>
+            <div class="gc-healthy">7</div><div class="gc-healthy">1</div><div class="gc-healthy">9</div><div class="gc-healthy">2</div><div class="gc-healthy">5</div><div class="gc-healthy">3</div><div class="gc-healthy">6</div><div class="gc-healthy">4</div>
+            <div class="gc-healthy">3</div><div class="gc-healthy">8</div><div class="gc-healthy">4</div><div class="gc-healthy">6</div><div class="gc-healthy">1</div><div class="gc-healthy">7</div><div class="gc-healthy">2</div><div class="gc-healthy">9</div>
+            <div class="gc-healthy">6</div><div class="gc-healthy">2</div><div class="gc-healthy">5</div><div class="gc-healthy">3</div><div class="gc-healthy">8</div><div class="gc-healthy">4</div><div class="gc-healthy">1</div><div class="gc-healthy">7</div>
+            <div class="gc-healthy">1</div><div class="gc-healthy">9</div><div class="gc-healthy">3</div><div class="gc-healthy">5</div><div class="gc-healthy">2</div><div class="gc-healthy">8</div><div class="gc-healthy">4</div><div class="gc-healthy">6</div>
+          </div>
+          <div class="legend" style="justify-content:center;margin-top:6px">
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.12)"></div>Healthy</div>
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(231,76,60,0.5)"></div>Infected</div>
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(46,204,113,0.45)"></div>Vaccinated</div>
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(155,89,182,0.45)"></div>Quarantined</div>
+            <div class="legend-item"><div class="legend-dot" style="background:rgba(241,196,15,0.5);border:2px solid var(--accent-yellow)"></div>Greedy Tip</div>
+          </div>
+        </div>
+
+        <div class="wf-panel">
+          <div class="section-label" style="color:var(--text)">📊 Game Status</div>
+          <div style="color:var(--text-muted);font-size:10px;line-height:1.8">
+            Turn: 3 / 20<br>
+            <span style="color:var(--accent-red)">■</span> Infected: 4 &nbsp;
+            <span style="color:var(--accent-green)">■</span> Vaccinated: 2<br>
+            <span style="color:var(--accent-purple)">■</span> Quarantined: 2 &nbsp;
+            Healthy: 56
+          </div>
+
+          <div class="section-label" style="color:var(--accent-blue)">🎯 Greedy Advisor</div>
+          <div style="color:var(--text-muted);font-size:10px;line-height:1.6">
+            Suggestion: district (2, 5)<br>
+            Risk level: 7<br>
+            <span style="color:var(--text-dim)">Highest-risk healthy neighbor</span>
+          </div>
+
+          <div class="section-label" style="color:var(--accent-purple)">🔒 Quarantine Plan</div>
+          <div style="color:var(--text-muted);font-size:10px;line-height:1.6">
+            Status: Solution found<br>
+            Districts needed: 4
+          </div>
+
+          <div class="section-label" style="color:var(--text)">⚡ Actions</div>
+          <div class="wf-btn" style="background:rgba(46,204,113,0.25);color:var(--accent-green)">VACCINATE SELECTED</div>
+          <div class="wf-btn" style="background:rgba(155,89,182,0.2);color:var(--accent-purple)">APPLY QUARANTINE</div>
+          <div class="wf-btn" style="background:rgba(255,255,255,0.06);color:var(--text-dim)">SKIP TURN</div>
+        </div>
+      </div>
+
+      <p style="margin-top:8px"><strong>Interaction:</strong> Player clicks a grid cell to select it → clicks VACCINATE to confirm, or clicks APPLY QUARANTINE to accept the backtracking plan, or SKIP TURN to pass. Each action generates an <code>action.json</code> file read by the C++ engine.</p>
+    </div>
+
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <div class="ref">
+      <strong>References:</strong> [1] Cormen et al., <em>Introduction to Algorithms</em>, 3rd ed., MIT Press, 2009. &nbsp;
+      [2] Russell &amp; Norvig, <em>AI: A Modern Approach</em>, 4th ed., Pearson, 2020. &nbsp;
+      [3] Pastor-Satorras et al., "Epidemic processes in complex networks," <em>Rev. Mod. Phys.</em>, 2015.
+    </div>
+    <div style="text-align:right">
+      <div style="font-weight:700;color:var(--text)">Team 16</div>
+      <div>Computer Sciences I — 2026-I</div>
+      <div>Eng. Carlos A. Sierra, M.Sc.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
